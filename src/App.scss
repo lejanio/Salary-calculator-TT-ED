@@ -1,13 +1,52 @@
 .app {
-  //margin: 20vh 20vw;
-  //width: 40vw;
-  //height: 40vh;
-  //background: purple;
-  //padding: 10vh 10vw;
+  display: grid;
   text-align: center;
-  margin: auto;
+  margin: 50vh auto;
 }
 
 .app-container {
+  display: grid;
+  padding: 20px;
+}
 
+.header {
+  display: grid;
+  gap: 20px;
+  background-color: #e4d7ee;
+  padding: 10px 0;
+}
+
+.employee-select--wrapper {
+
+}
+
+.week-select--wrapper {
+
+}
+
+.week {
+
+}
+
+.main-section {
+  background-color: floralwhite;
+  padding: 20px;
+}
+
+.weekday-information {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.footer {
+  display: grid;
+  gap: 20px;
+  background-color: #e4d7ee;
+  padding: 10px 0;
+}
+
+.footer__item {
+  display: flex;
+  justify-content: space-around;
 }
