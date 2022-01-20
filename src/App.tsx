@@ -2,9 +2,7 @@ import './App.scss';
 import Calculator from './components/Calculator/Calculator';
 
 const App = () => (
-  <div>
-    <Calculator />
-  </div>
+  <Calculator />
 );
 
 export default App;
