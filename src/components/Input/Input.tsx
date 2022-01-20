@@ -11,7 +11,7 @@ type InputType = {
 
 const Input:FC<InputType> = ({ day, hours, onChange }) => (
   <div className="weekday-information">
-    <div className="hours-input--wrapper">
+    <div>
       <label className="custom-label">
         <span className="label-text">{day}</span>
         <input

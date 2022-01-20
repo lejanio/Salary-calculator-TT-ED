@@ -1,4 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import produce from 'immer';
 import Input from '../Input/Input';
 import PayAmount from '../PayAmount/PayAmount';
@@ -215,6 +217,7 @@ const Calculator = () => {
           <div>
             <label className="custom-label--large">
               <span className="label-text--large">Employee</span>
+              <FontAwesomeIcon icon={faUserAlt} className="user-icon" />
               <select
                 name="employees"
                 className="input--large"
@@ -228,14 +231,16 @@ const Calculator = () => {
                   <option key={id} value={name}>{name}</option>
                 ))}
               </select>
+              <FontAwesomeIcon icon={faAngleDown} className="angle-down-icon" />
             </label>
           </div>
           <div>
             <label className="custom-label--large">
               <span className="label-text--large">Week</span>
+              <FontAwesomeIcon icon={faUserAlt} className="user-icon" />
               <select
                 name="weeks"
-                className="employee-select input--large"
+                className="input--large"
                 id="weeks"
                 value={selectedWeek}
                 onChange={(e) => {
@@ -247,6 +252,7 @@ const Calculator = () => {
                   <option key={id} value={interval}>{interval}</option>
                 ))}
               </select>
+              <FontAwesomeIcon icon={faAngleDown} className="angle-down-icon" />
             </label>
           </div>
         </header>
