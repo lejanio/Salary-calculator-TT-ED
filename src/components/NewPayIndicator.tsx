@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 type NewPayIndicatorType = {
-  pay: number;
+  pay: string;
 }
 
 const NewPayIndicator:FC<NewPayIndicatorType> = ({ pay }) => {

@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import produce from 'immer';
 import NewInput from './NewInput';
 import NewPayIndicator from './NewPayIndicator';
+import './NewApp.scss';
 
 type EmployeeTable = {
   id: number
@@ -17,24 +19,24 @@ const employees = [
     name: 'Janice Ribtab',
     weeks: [
       {
-        hours: [1, 0, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 1],
+        hours: [1, 0, 1, 0, 1, 0, 1],
+        pay: [10, 0, 10, 0, 10, 0, 20],
       },
       {
-        hours: [0, 1, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 1, 0],
+        hours: [0, 1, 0, 1, 0, 1, 0],
+        pay: [0, 10, 0, 10, 0, 20, 0],
       },
       {
-        hours: [0, 0, 1, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 1, 0, 0],
+        hours: [1, 0, 1, 0, 1, 0, 1],
+        pay: [10, 0, 10, 0, 10, 0, 20],
       },
       {
-        hours: [0, 0, 0, 1, 0, 0, 0],
-        pay: [0, 0, 0, 1, 0, 0, 0],
+        hours: [0, 1, 0, 1, 0, 1, 0],
+        pay: [0, 10, 0, 10, 0, 20, 0],
       },
       {
-        hours: [0, 0, 0, 0, 1, 0, 0],
-        pay: [0, 0, 1, 0, 0, 0, 0],
+        hours: [1, 0, 1, 0, 1, 0, 1],
+        pay: [10, 0, 10, 0, 10, 0, 20],
       },
     ],
   },
@@ -43,24 +45,24 @@ const employees = [
     name: 'Steve Wiki',
     weeks: [
       {
-        hours: [2, 0, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 2],
+        hours: [2, 0, 2, 0, 2, 0, 2],
+        pay: [20, 0, 20, 0, 20, 0, 40],
       },
       {
-        hours: [0, 2, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 2, 0],
+        hours: [0, 2, 0, 2, 0, 2, 0],
+        pay: [0, 20, 0, 20, 0, 40, 0],
       },
       {
-        hours: [0, 0, 2, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 2, 0, 0],
+        hours: [2, 0, 2, 0, 2, 0, 2],
+        pay: [20, 0, 20, 0, 20, 0, 40],
       },
       {
-        hours: [0, 0, 0, 2, 0, 0, 0],
-        pay: [0, 0, 0, 2, 0, 0, 0],
+        hours: [0, 2, 0, 2, 0, 2, 0],
+        pay: [0, 20, 0, 20, 0, 40, 0],
       },
       {
-        hours: [0, 0, 0, 0, 2, 0, 0],
-        pay: [0, 0, 2, 0, 0, 0, 0],
+        hours: [2, 0, 2, 0, 2, 0, 2],
+        pay: [20, 0, 20, 0, 20, 0, 40],
       },
     ],
   },
@@ -69,24 +71,24 @@ const employees = [
     name: 'Zoe Hedge',
     weeks: [
       {
-        hours: [3, 0, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [3, 0, 3, 0, 3, 0, 3],
+        pay: [30, 0, 30, 0, 30, 0, 60],
       },
       {
-        hours: [0, 3, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [0, 3, 0, 3, 0, 3, 0],
+        pay: [0, 30, 0, 30, 0, 60, 0],
       },
       {
-        hours: [0, 0, 3, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [3, 0, 3, 0, 3, 0, 3],
+        pay: [30, 0, 30, 0, 30, 0, 60],
       },
       {
-        hours: [0, 0, 0, 3, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [0, 3, 0, 3, 0, 3, 0],
+        pay: [0, 30, 0, 30, 0, 60, 0],
       },
       {
-        hours: [0, 0, 0, 0, 3, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [3, 0, 3, 0, 3, 0, 3],
+        pay: [30, 0, 30, 0, 30, 0, 60],
       },
     ],
   },
@@ -95,29 +97,30 @@ const employees = [
     name: 'Rufus Relquis',
     weeks: [
       {
-        hours: [4, 0, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [4, 0, 4, 0, 4, 0, 4],
+        pay: [40, 0, 40, 0, 40, 0, 80],
       },
       {
-        hours: [0, 4, 0, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [0, 4, 0, 4, 0, 4, 0],
+        pay: [0, 40, 0, 40, 0, 80, 0],
       },
       {
-        hours: [0, 0, 4, 0, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [4, 0, 4, 0, 4, 0, 4],
+        pay: [40, 0, 40, 0, 40, 0, 80],
       },
       {
-        hours: [0, 0, 0, 4, 0, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [0, 4, 0, 4, 0, 4, 0],
+        pay: [0, 40, 0, 40, 0, 80, 0],
       },
       {
-        hours: [0, 0, 0, 0, 4, 0, 0],
-        pay: [0, 0, 0, 0, 0, 0, 0],
+        hours: [4, 0, 4, 0, 4, 0, 4],
+        pay: [40, 0, 40, 0, 40, 0, 80],
       },
     ],
   }];
 
 const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
 const weeks = [
   {
     id: 1,
@@ -147,26 +150,7 @@ const NewApp = () => {
   const [selectedWeek, setSelectedWeek] = useState('');
   const [totalHours, setTotalHours] = useState(0);
   const [totalSalary, setTotalSalary] = useState(0);
-
-  // const calculateDailyPay = (time: string) => {
-  //   let pay = 0;
-  //   if (day === 'Saturday' || day === 'Sunday') {
-  //     pay = parseInt(time, 10) * 10 * 2;
-  //   } else {
-  //     pay = parseInt(time, 10) * 10;
-  //   }
-  //   if (Number.isNaN(pay)) {
-  //     pay = 0;
-  //   }
-  //   setDailyPay(pay);
-  // };
-  //
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     calculateDailyPay(hoursWorked);
-  //   }, 1000);
-  //   return () => clearInterval(intervalId);
-  // }, [hoursWorked]);
+  const [progressBarActive, setProgressBarActive] = useState(false);
 
   const weekObjectIndex: number = weeks.findIndex((item) => item.interval === selectedWeek);
   const employeeObjectIndex: number = employeeTable.findIndex((item) => item.name === selectedEmployee);
@@ -178,7 +162,6 @@ const NewApp = () => {
         total += +item;
       });
       setTotalHours(total);
-      console.log('total', total);
     }
   };
 
@@ -189,17 +172,41 @@ const NewApp = () => {
         total += +item;
       });
       setTotalSalary(total);
-      console.log('total', total);
     }
   };
+
+  const calculateDailyPay = () => {
+    if (employeeObjectIndex >= 0 && weekObjectIndex >= 0) {
+      let pay = 0;
+      employeeTable[employeeObjectIndex].weeks[weekObjectIndex].pay.map((item, index) => {
+        const time = employeeTable[employeeObjectIndex].weeks[weekObjectIndex].hours[index];
+        if (index === 5 || index === 6) {
+          pay = time * 10 * 2;
+        } else {
+          pay = time * 10;
+        }
+        if (Number.isNaN(pay)) {
+          pay = 0;
+        }
+        setProgressBarActive(false);
+        return setEmployeeTable(
+          produce((draft) => {
+            draft[employeeObjectIndex].weeks[weekObjectIndex].pay[index] = pay;
+          }),
+        );
+      });
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => calculateDailyPay(), 500);
+    return () => clearInterval(intervalId);
+  }, [selectedEmployee, selectedWeek, employeeTable]);
 
   useEffect(() => {
     calculateTotalHours();
     calculateTotalSalary();
   }, [selectedEmployee, selectedWeek, employeeTable]);
-
-  console.log('weekObjectIndex', weekObjectIndex);
-  console.log('employeeObjectIndex', employeeObjectIndex);
 
   return (
     <div className="app">
@@ -207,8 +214,6 @@ const NewApp = () => {
         <header className="header">
           <div className="employee-select--wrapper">
             <label htmlFor="employees" className="employee-select__label">
-              <div>{selectedEmployee}</div>
-              <div>{selectedWeek}</div>
               Employee:
               {' '}
               <select
@@ -217,7 +222,6 @@ const NewApp = () => {
                 value={selectedEmployee}
                 onChange={(e) => {
                   setSelectedEmployee(e.target.value);
-                  console.log('sSE', e.target.value);
                 }}
               >
                 <option value="" selected disabled>Choose an employee</option>
@@ -237,7 +241,6 @@ const NewApp = () => {
                 value={selectedWeek}
                 onChange={(e) => {
                   setSelectedWeek(e.target.value);
-                  // fn();
                 }}
               >
                 <option value="" selected disabled>Choose week</option>
@@ -248,65 +251,76 @@ const NewApp = () => {
             </label>
           </div>
         </header>
+        <div className="progress-bar--wrapper">
+          {progressBarActive && (
+            <div className="progress-bar--container">
+              <div className="progress-bar" />
+            </div>
+          )}
+        </div>
         <section className="main-section">
-          <div>
-            {(weekObjectIndex >= 0 && employeeObjectIndex >= 0)
-              && employeeTable[employeeObjectIndex].weeks[weekObjectIndex].hours.map(
-                (item, index) => (
-                  <div
-                    key={Math.random()}
-                  >
-                    <div>
-                      <NewInput
-                        day={weekdays[index]}
-                        hours={item}
-                        onChange={
+          {(weekObjectIndex >= 0 && employeeObjectIndex >= 0)
+            ? (employeeTable[employeeObjectIndex].weeks[weekObjectIndex].hours.map(
+              (item, index) => (
+                <div
+                  key={Math.random()}
+                  className="row-item"
+                >
+                  <div>
+                    <NewInput
+                      day={weekdays[index]}
+                      hours={item}
+                      onChange={
                       (e: ChangeEvent<HTMLInputElement>) => {
-                        setEmployeeTable(
-                          employeeTable.map((employee, employeeIndex) => {
-                            if (employeeIndex !== employeeObjectIndex) {
-                              return employee;
-                            }
-                            return {
-                              ...employee,
-                              weeks: employee.weeks.map((week, weekIndex) => {
-                                if (weekIndex !== weekObjectIndex) {
-                                  return week;
-                                }
-                                return {
-                                  ...week,
-                                  hours: week.hours.map((day, dayIndex) => {
-                                    if (dayIndex !== index) {
-                                      return day;
-                                    }
-                                    const newValue: number = parseInt(e.target.value, 10);
-                                    return newValue;
-                                  }),
-                                };
-                              }),
-                            };
-                          }),
-                        );
-                        console.log('newEmployeeTable', employeeTable);
+                        setProgressBarActive(true);
+                        setEmployeeTable(produce((draft) => {
+                          draft[employeeObjectIndex].weeks[weekObjectIndex].hours[index] = parseInt(e.target.value, 10);
+                        }));
+
+                        // THIS CODE IS THE ALTERNATIVE TO USING IMMER:
+                        //
+                        // setEmployeeTable(
+                        //   employeeTable.map((employee, employeeIndex) => {
+                        //     if (employeeIndex !== employeeObjectIndex) {
+                        //       return employee;
+                        //     }
+                        //     return {
+                        //       ...employee,
+                        //       weeks: employee.weeks.map((week, weekIndex) => {
+                        //         if (weekIndex !== weekObjectIndex) {
+                        //           return week;
+                        //         }
+                        //         return {
+                        //           ...week,
+                        //           hours: week.hours.map((day, dayIndex) => {
+                        //             if (dayIndex !== index) {
+                        //               return day;
+                        //             }
+                        //             const newValue: number = parseInt(e.target.value, 10);
+                        //             return newValue;
+                        //           }),
+                        //         };
+                        //       }),
+                        //     };
+                        //   }),
+                        // );
                       }
                     }
-                      />
-                      Bingo
-                    </div>
-                    <div>
-                      €
-                      {' '}
-                      <span>
-                        <NewPayIndicator
-                          pay={employeeTable[employeeObjectIndex].weeks[weekObjectIndex].pay[index]}
-                        />
-                        {}
-                      </span>
-                    </div>
+                    />
                   </div>
-                ),
-              )}
-          </div>
+                  <div className="daily-pay">
+                    €
+                    <span>
+                      <NewPayIndicator
+                        pay={employeeTable[employeeObjectIndex].weeks[weekObjectIndex].pay[index].toFixed(2)}
+                      />
+                      {}
+                    </span>
+                  </div>
+                </div>
+              ),
+            ))
+            : (<div className="message">Please choose an employee and a time interval</div>)}
         </section>
         <footer className="footer">
           <div className="footer__item">
@@ -317,7 +331,11 @@ const NewApp = () => {
           </div>
           <div className="footer__item">
             <span>Salary</span>
-            <span>{totalSalary}</span>
+            <span>
+              €
+              {' '}
+              {totalSalary.toFixed(2)}
+            </span>
           </div>
         </footer>
       </div>
