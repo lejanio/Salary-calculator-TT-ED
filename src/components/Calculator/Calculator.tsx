@@ -5,7 +5,7 @@ import produce from 'immer';
 import Input from '../Input/Input';
 import PayAmount from '../PayAmount/PayAmount';
 import './Calculator.scss';
-import { weekdays, employees as initialEmployees, weeks } from '../../assets/data';
+import { weekdays, employees as initialEmployeeTable, weeks } from '../../assets/data';
 
 type EmployeeTable = {
   id: number
@@ -17,7 +17,7 @@ type EmployeeTable = {
 }
 
 const Calculator = () => {
-  const [employeeTable, setEmployeeTable] = useState<EmployeeTable[]>(initialEmployees);
+  const [employeeTable, setEmployeeTable] = useState<EmployeeTable[]>(initialEmployeeTable);
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [selectedWeek, setSelectedWeek] = useState('');
   const [totalHours, setTotalHours] = useState(0);
