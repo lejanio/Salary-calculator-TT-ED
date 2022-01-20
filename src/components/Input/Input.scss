@@ -6,11 +6,12 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  bottom: -7px;
+  bottom: -8px;
   left: -40px;
   background-color: floralwhite;
   padding: 0 5px;
   font-size: 12px;
+  font-weight: bold;
   color: #a343f3;
   z-index: 2;
 }
@@ -22,6 +23,7 @@
   -moz-appearance: none;
   appearance: none;
   border: 2px solid #a343f3;
+  background-color: floralwhite;
   padding: 12px 40px;
   width: 100px;
   font-size: 14px;

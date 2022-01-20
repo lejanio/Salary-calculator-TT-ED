@@ -1,9 +1,9 @@
 import './App.scss';
-import NewApp from './components/NewApp';
+import Calculator from './components/Calculator/Calculator';
 
 const App = () => (
-  <div className="app">
-    <NewApp />
+  <div>
+    <Calculator />
   </div>
 );
 

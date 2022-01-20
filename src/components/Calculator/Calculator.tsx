@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import produce from 'immer';
-import NewInput from './NewInput';
-import NewPayIndicator from './NewPayIndicator';
-import './NewApp.scss';
+import Input from '../Input/Input';
+import PayAmount from '../PayAmount/PayAmount';
+import './Calculator.scss';
 
 type EmployeeTable = {
   id: number
@@ -12,6 +12,8 @@ type EmployeeTable = {
     pay: number[];
   }[],
 }
+
+const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const employees = [
   {
@@ -119,8 +121,6 @@ const employees = [
     ],
   }];
 
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
 const weeks = [
   {
     id: 1,
@@ -144,7 +144,7 @@ const weeks = [
   },
 ];
 
-const NewApp = () => {
+const Calculator = () => {
   const [employeeTable, setEmployeeTable] = useState<EmployeeTable[]>(employees);
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [selectedWeek, setSelectedWeek] = useState('');
@@ -212,13 +212,12 @@ const NewApp = () => {
     <div className="app">
       <div className="app-container">
         <header className="header">
-          <div className="employee-select--wrapper">
-            <label htmlFor="employees" className="employee-select__label">
-              Employee:
-              {' '}
+          <div>
+            <label className="custom-label--large">
+              <span className="label-text--large">Employee</span>
               <select
                 name="employees"
-                className="employee-select"
+                className="input--large"
                 value={selectedEmployee}
                 onChange={(e) => {
                   setSelectedEmployee(e.target.value);
@@ -231,12 +230,12 @@ const NewApp = () => {
               </select>
             </label>
           </div>
-          <div className="week-select--wrapper">
-            <label htmlFor="weeks" className="week-select__label">
-              Week:
-              {' '}
+          <div>
+            <label className="custom-label--large">
+              <span className="label-text--large">Week</span>
               <select
                 name="weeks"
+                className="employee-select input--large"
                 id="weeks"
                 value={selectedWeek}
                 onChange={(e) => {
@@ -267,7 +266,7 @@ const NewApp = () => {
                   className="row-item"
                 >
                   <div>
-                    <NewInput
+                    <Input
                       day={weekdays[index]}
                       hours={item}
                       onChange={
@@ -276,34 +275,6 @@ const NewApp = () => {
                         setEmployeeTable(produce((draft) => {
                           draft[employeeObjectIndex].weeks[weekObjectIndex].hours[index] = parseInt(e.target.value, 10);
                         }));
-
-                        // THIS CODE IS THE ALTERNATIVE TO USING IMMER:
-                        //
-                        // setEmployeeTable(
-                        //   employeeTable.map((employee, employeeIndex) => {
-                        //     if (employeeIndex !== employeeObjectIndex) {
-                        //       return employee;
-                        //     }
-                        //     return {
-                        //       ...employee,
-                        //       weeks: employee.weeks.map((week, weekIndex) => {
-                        //         if (weekIndex !== weekObjectIndex) {
-                        //           return week;
-                        //         }
-                        //         return {
-                        //           ...week,
-                        //           hours: week.hours.map((day, dayIndex) => {
-                        //             if (dayIndex !== index) {
-                        //               return day;
-                        //             }
-                        //             const newValue: number = parseInt(e.target.value, 10);
-                        //             return newValue;
-                        //           }),
-                        //         };
-                        //       }),
-                        //     };
-                        //   }),
-                        // );
                       }
                     }
                     />
@@ -311,7 +282,7 @@ const NewApp = () => {
                   <div className="daily-pay">
                     €
                     <span>
-                      <NewPayIndicator
+                      <PayAmount
                         pay={employeeTable[employeeObjectIndex].weeks[weekObjectIndex].pay[index].toFixed(2)}
                       />
                       {}
@@ -343,4 +314,4 @@ const NewApp = () => {
   );
 };
 
-export default NewApp;
+export default Calculator;
