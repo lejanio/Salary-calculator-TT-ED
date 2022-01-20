@@ -5,6 +5,7 @@ import produce from 'immer';
 import Input from '../Input/Input';
 import PayAmount from '../PayAmount/PayAmount';
 import './Calculator.scss';
+import { weekdays, employees, weeks } from '../../assets/data';
 
 type EmployeeTable = {
   id: number
@@ -15,137 +16,136 @@ type EmployeeTable = {
   }[],
 }
 
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-const employees = [
-  {
-    id: 1,
-    name: 'Janice Ribtab',
-    weeks: [
-      {
-        hours: [1, 0, 1, 0, 1, 0, 1],
-        pay: [10, 0, 10, 0, 10, 0, 20],
-      },
-      {
-        hours: [0, 1, 0, 1, 0, 1, 0],
-        pay: [0, 10, 0, 10, 0, 20, 0],
-      },
-      {
-        hours: [1, 0, 1, 0, 1, 0, 1],
-        pay: [10, 0, 10, 0, 10, 0, 20],
-      },
-      {
-        hours: [0, 1, 0, 1, 0, 1, 0],
-        pay: [0, 10, 0, 10, 0, 20, 0],
-      },
-      {
-        hours: [1, 0, 1, 0, 1, 0, 1],
-        pay: [10, 0, 10, 0, 10, 0, 20],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Steve Wiki',
-    weeks: [
-      {
-        hours: [2, 0, 2, 0, 2, 0, 2],
-        pay: [20, 0, 20, 0, 20, 0, 40],
-      },
-      {
-        hours: [0, 2, 0, 2, 0, 2, 0],
-        pay: [0, 20, 0, 20, 0, 40, 0],
-      },
-      {
-        hours: [2, 0, 2, 0, 2, 0, 2],
-        pay: [20, 0, 20, 0, 20, 0, 40],
-      },
-      {
-        hours: [0, 2, 0, 2, 0, 2, 0],
-        pay: [0, 20, 0, 20, 0, 40, 0],
-      },
-      {
-        hours: [2, 0, 2, 0, 2, 0, 2],
-        pay: [20, 0, 20, 0, 20, 0, 40],
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Zoe Hedge',
-    weeks: [
-      {
-        hours: [3, 0, 3, 0, 3, 0, 3],
-        pay: [30, 0, 30, 0, 30, 0, 60],
-      },
-      {
-        hours: [0, 3, 0, 3, 0, 3, 0],
-        pay: [0, 30, 0, 30, 0, 60, 0],
-      },
-      {
-        hours: [3, 0, 3, 0, 3, 0, 3],
-        pay: [30, 0, 30, 0, 30, 0, 60],
-      },
-      {
-        hours: [0, 3, 0, 3, 0, 3, 0],
-        pay: [0, 30, 0, 30, 0, 60, 0],
-      },
-      {
-        hours: [3, 0, 3, 0, 3, 0, 3],
-        pay: [30, 0, 30, 0, 30, 0, 60],
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: 'Rufus Relquis',
-    weeks: [
-      {
-        hours: [4, 0, 4, 0, 4, 0, 4],
-        pay: [40, 0, 40, 0, 40, 0, 80],
-      },
-      {
-        hours: [0, 4, 0, 4, 0, 4, 0],
-        pay: [0, 40, 0, 40, 0, 80, 0],
-      },
-      {
-        hours: [4, 0, 4, 0, 4, 0, 4],
-        pay: [40, 0, 40, 0, 40, 0, 80],
-      },
-      {
-        hours: [0, 4, 0, 4, 0, 4, 0],
-        pay: [0, 40, 0, 40, 0, 80, 0],
-      },
-      {
-        hours: [4, 0, 4, 0, 4, 0, 4],
-        pay: [40, 0, 40, 0, 40, 0, 80],
-      },
-    ],
-  }];
-
-const weeks = [
-  {
-    id: 1,
-    interval: '17 Jan 2022 - 23 Jan 2022',
-  },
-  {
-    id: 2,
-    interval: '10 Jan 2022 - 16 Jan 2022',
-  },
-  {
-    id: 3,
-    interval: '3 Jan 2022 - 9 Jan 2022',
-  },
-  {
-    id: 4,
-    interval: '27 Dec 2021 - 2 Jan 2022',
-  },
-  {
-    id: 5,
-    interval: '20 Dec 2021 - 26 Dec 2021',
-  },
-];
-
+// const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+//
+// const employees = [
+//   {
+//     id: 1,
+//     name: 'Janice Ribtab',
+//     weeks: [
+//       {
+//         hours: [1, 0, 1, 0, 1, 0, 1],
+//         pay: [10, 0, 10, 0, 10, 0, 20],
+//       },
+//       {
+//         hours: [0, 1, 0, 1, 0, 1, 0],
+//         pay: [0, 10, 0, 10, 0, 20, 0],
+//       },
+//       {
+//         hours: [1, 0, 1, 0, 1, 0, 1],
+//         pay: [10, 0, 10, 0, 10, 0, 20],
+//       },
+//       {
+//         hours: [0, 1, 0, 1, 0, 1, 0],
+//         pay: [0, 10, 0, 10, 0, 20, 0],
+//       },
+//       {
+//         hours: [1, 0, 1, 0, 1, 0, 1],
+//         pay: [10, 0, 10, 0, 10, 0, 20],
+//       },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     name: 'Steve Wiki',
+//     weeks: [
+//       {
+//         hours: [2, 0, 2, 0, 2, 0, 2],
+//         pay: [20, 0, 20, 0, 20, 0, 40],
+//       },
+//       {
+//         hours: [0, 2, 0, 2, 0, 2, 0],
+//         pay: [0, 20, 0, 20, 0, 40, 0],
+//       },
+//       {
+//         hours: [2, 0, 2, 0, 2, 0, 2],
+//         pay: [20, 0, 20, 0, 20, 0, 40],
+//       },
+//       {
+//         hours: [0, 2, 0, 2, 0, 2, 0],
+//         pay: [0, 20, 0, 20, 0, 40, 0],
+//       },
+//       {
+//         hours: [2, 0, 2, 0, 2, 0, 2],
+//         pay: [20, 0, 20, 0, 20, 0, 40],
+//       },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     name: 'Zoe Hedge',
+//     weeks: [
+//       {
+//         hours: [3, 0, 3, 0, 3, 0, 3],
+//         pay: [30, 0, 30, 0, 30, 0, 60],
+//       },
+//       {
+//         hours: [0, 3, 0, 3, 0, 3, 0],
+//         pay: [0, 30, 0, 30, 0, 60, 0],
+//       },
+//       {
+//         hours: [3, 0, 3, 0, 3, 0, 3],
+//         pay: [30, 0, 30, 0, 30, 0, 60],
+//       },
+//       {
+//         hours: [0, 3, 0, 3, 0, 3, 0],
+//         pay: [0, 30, 0, 30, 0, 60, 0],
+//       },
+//       {
+//         hours: [3, 0, 3, 0, 3, 0, 3],
+//         pay: [30, 0, 30, 0, 30, 0, 60],
+//       },
+//     ],
+//   },
+//   {
+//     id: 4,
+//     name: 'Rufus Relquis',
+//     weeks: [
+//       {
+//         hours: [4, 0, 4, 0, 4, 0, 4],
+//         pay: [40, 0, 40, 0, 40, 0, 80],
+//       },
+//       {
+//         hours: [0, 4, 0, 4, 0, 4, 0],
+//         pay: [0, 40, 0, 40, 0, 80, 0],
+//       },
+//       {
+//         hours: [4, 0, 4, 0, 4, 0, 4],
+//         pay: [40, 0, 40, 0, 40, 0, 80],
+//       },
+//       {
+//         hours: [0, 4, 0, 4, 0, 4, 0],
+//         pay: [0, 40, 0, 40, 0, 80, 0],
+//       },
+//       {
+//         hours: [4, 0, 4, 0, 4, 0, 4],
+//         pay: [40, 0, 40, 0, 40, 0, 80],
+//       },
+//     ],
+//   }];
+//
+// const weeks = [
+//   {
+//     id: 1,
+//     interval: '17 Jan 2022 - 23 Jan 2022',
+//   },
+//   {
+//     id: 2,
+//     interval: '10 Jan 2022 - 16 Jan 2022',
+//   },
+//   {
+//     id: 3,
+//     interval: '3 Jan 2022 - 9 Jan 2022',
+//   },
+//   {
+//     id: 4,
+//     interval: '27 Dec 2021 - 2 Jan 2022',
+//   },
+//   {
+//     id: 5,
+//     interval: '20 Dec 2021 - 26 Dec 2021',
+//   },
+// ];
 const Calculator = () => {
   const [employeeTable, setEmployeeTable] = useState<EmployeeTable[]>(employees);
   const [selectedEmployee, setSelectedEmployee] = useState('');
