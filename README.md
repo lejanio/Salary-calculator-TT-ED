@@ -16,6 +16,7 @@ The user can change the hours, and other values are then re-calculated according
 
 The app has been implemented using React with Typescript.
 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
