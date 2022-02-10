@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Salary-calculator-TT-ED/static/css/main.dde7d280.chunk.css",
+    "main.js": "/Salary-calculator-TT-ED/static/js/main.de232596.chunk.js",
+    "main.js.map": "/Salary-calculator-TT-ED/static/js/main.de232596.chunk.js.map",
+    "runtime-main.js": "/Salary-calculator-TT-ED/static/js/runtime-main.b4ceb088.js",
+    "runtime-main.js.map": "/Salary-calculator-TT-ED/static/js/runtime-main.b4ceb088.js.map",
+    "static/js/2.689e3a18.chunk.js": "/Salary-calculator-TT-ED/static/js/2.689e3a18.chunk.js",
+    "static/js/2.689e3a18.chunk.js.map": "/Salary-calculator-TT-ED/static/js/2.689e3a18.chunk.js.map",
+    "static/js/3.0ae9758a.chunk.js": "/Salary-calculator-TT-ED/static/js/3.0ae9758a.chunk.js",
+    "static/js/3.0ae9758a.chunk.js.map": "/Salary-calculator-TT-ED/static/js/3.0ae9758a.chunk.js.map",
+    "index.html": "/Salary-calculator-TT-ED/index.html",
+    "static/css/main.dde7d280.chunk.css.map": "/Salary-calculator-TT-ED/static/css/main.dde7d280.chunk.css.map",
+    "static/js/2.689e3a18.chunk.js.LICENSE.txt": "/Salary-calculator-TT-ED/static/js/2.689e3a18.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b4ceb088.js",
+    "static/js/2.689e3a18.chunk.js",
+    "static/css/main.dde7d280.chunk.css",
+    "static/js/main.de232596.chunk.js"
+  ]
+}
