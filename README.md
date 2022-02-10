@@ -1,3 +1,21 @@
+# Salary Calculator App
+
+A working project can be found here: https://lejanio.github.io/Salary-calculator-TT-ED/
+
+![Salary Calculator](salary_calculator_demo.gif)
+
+## General description
+
+The app calculates employee salaries for each of the weeks in a five-week period. After the user
+selects the employee and the week from the dropdown menus, the app renders the number
+of hours per day in the particular week and calculates and renders the daily amount, total number
+of hours per week, as well as the total weekly salary. The hourly rate for weekend days is
+double the normal hourly rate.
+
+The user can change the hours, and other values are then re-calculated accordingly.
+
+The app has been implemented using React with Typescript.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +23,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs the necessary project dependencies.
 
 ### `npm start`
 
